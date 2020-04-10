@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: url(src/background-pangolin.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar-nav { 
+    flex-direction: row;
+}
+
+.nav-item {
+    margin: 0px 10px;
+}
+
+.col-md-6, .col-md-8, .col-md-10, .col-md-12 {
+    padding: 20px;
+    border-radius: 10px;
+    opacity: 0.85;
+}
+
+.btn-home {
+    padding: 20px 50px;
+}

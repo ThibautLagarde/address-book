@@ -13,6 +13,24 @@ module.exports.getAllUsers = (req, res) => {
     });
 };
 
+module.exports.createFriend = (req, res) => {
+    const user = new User();
+
+    user.name = req.body.name;
+    user.age = req.body.age;
+    user.family = req.body.family;
+    user.diet = req.body.diet;
+  
+    user.setPassword(req.body.password);
+
+    user.save(() => {
+        res.status(200);
+        res.json({
+            msg: "Friend created"
+        });
+    });;
+};
+
 module.exports.addFriend = (req, res) => {
     const user = new User();
 

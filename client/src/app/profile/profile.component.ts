@@ -9,8 +9,8 @@ import { Router } from "@angular/router";
 export class ProfileComponent implements OnInit {
   existingUsers: {};
   details: UserDetails;
-  credentials: TokenPayload = {
-  };
+  credentials: TokenPayload = {};
+  newFriend: TokenPayload = {};
 
   constructor(private auth: AuthenticationService, private router: Router) {}
 
@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
     this.auth.getAllUsers().subscribe(
       users => {
         this.existingUsers = users;
+        console.log(this.existingUsers)
       },
       err => {
         console.error(err);
@@ -36,6 +37,17 @@ export class ProfileComponent implements OnInit {
 
   update() {
     this.auth.profileUpdate(this.credentials).subscribe(
+      () => {
+        this.ngOnInit();
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
+  createFriend() {
+    this.auth.createFriend(this.newFriend).subscribe(
       () => {
         this.ngOnInit();
       },

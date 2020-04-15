@@ -22,6 +22,7 @@ router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
 // friends management
+router.post('/createFriend', ctrlFriends.createFriend);
 router.get('/users', ctrlFriends.getAllUsers);
 router.put('/addFriend', auth, ctrlFriends.addFriend);
 router.put('/removeFriend', auth, ctrlFriends.removeFriend);

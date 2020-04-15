@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row my-2">
-    <div class="col-md-6 offset-md-3 bg-light text-center">
+    <div class="col-md-6 bg-light text-center">
       <h1 class="form-signin-heading">Mon profil</h1>
       <form (submit)="update()">
         <div class="form-group row">
@@ -32,6 +32,63 @@
         <button type="submit" class="btn btn-dark">Mettre à jour</button>
       </form>
     </div>
+    <div class="col-md-6 bg-light text-center">
+      <div class="col-md-6 offset-md-3 bg-light text-center">
+        <h1>Créer un(e) ami(e)</h1>
+        <form (submit)="createFriend()">
+          <div class="form-group">
+            <label for="createFriendName">Full name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="createFriendName"
+              placeholder="Martin le Pangolin"
+              [(ngModel)]="newFriend.name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="createFriendPassword">Mot de passe</label>
+            <input
+              type="password"
+              class="form-control"
+              name="createFriendPassword"
+              placeholder="Password"
+              [(ngModel)]="newFriend.password"
+            />
+          </div>
+          <div class="form-group">
+            <label for="createFriendAge">Age</label>
+            <input
+              type="text"
+              class="form-control"
+              name="createFriendAge"
+              placeholder="12"
+              [(ngModel)]="newFriend.age"
+            />
+          </div>
+          <div class="form-group">
+            <label for="createFriendFamily">Famille</label>
+            <select class="form-control" id="createFriendFamily" name="createFriendFamily" [(ngModel)]="newFriend.family">
+              <option value>Manidae</option>
+              <option>Maninae</option>
+              <option>Smutsiinae</option>
+              <option>Fossile</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="createFriendDiet">Et toi, tu manges quoi?</label>
+            <input
+              type="text"
+              class="form-control"
+              name="createFriendDiet"
+              placeholder="Insectes"
+              [(ngModel)]="newFriend.diet"
+            />
+          </div>
+          <button type="submit" class="btn btn-dark" (click)="credentials.name=newFriend.name; addFriend()">Je crée mes amis!</button>
+        </form>
+      </div>
+    </div>
   </div>
   <div class="row my-2">
     <div class="col-md-12 bg-light text-center">
@@ -48,10 +105,12 @@
     <div class="col-md-12 bg-light text-center">
       <h1>Autres utilisateurs</h1>
       <div class="row">
-        <div class="col-md-3 mx-auto my-5" *ngFor="let user of existingUsers | keyvalue">
+        <ng-container *ngFor="let user of existingUsers | keyvalue">
+        <div class="col-md-3 mx-auto my-5" *ngIf="user.key != details?.name">
           <h4>{{ user.key }}</h4>
           <button class="btn btn-success" (click)="credentials.name=user.key; addFriend()">Ajouter</button>
         </div>
+        </ng-container>
       </div>
     </div>
   </div>

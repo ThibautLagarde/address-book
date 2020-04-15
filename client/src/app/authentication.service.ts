@@ -28,6 +28,15 @@ export interface TokenPayload {
   _friends?: Array<string>;
 }
 
+// export interface NewFriend {
+//   name?: string;
+//   password?: string;
+//   age?: string;
+//   family?: string;
+//   diet?: string;
+//   _friends?: Array<string>;
+// }
+
 @Injectable({
   providedIn: "root"
 })
@@ -50,7 +59,7 @@ export class AuthenticationService {
 
   private request(
     method: "post" | "get" | "put",
-    type: "login" | "register" | "profile" | "profile/update" | "users" | "addFriend" | "removeFriend",
+    type: "login" | "register" | "profile" | "profile/update" | "users" | "addFriend" | "removeFriend" | "createFriend",
     user?: TokenPayload
   ): Observable<any> {
     let base$;
@@ -126,6 +135,10 @@ export class AuthenticationService {
 
   public getAllUsers(): Observable<any> {
     return this.request("get", "users");
+  }
+
+  public createFriend(user: TokenPayload): Observable<any> {
+    return this.request("post", "createFriend", user);
   }
   
   public addFriend(user: TokenPayload): Observable<any> {
